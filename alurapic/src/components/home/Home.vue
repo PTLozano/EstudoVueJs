@@ -11,6 +11,12 @@
         <meu-painel :titulo="foto.titulo">
           <imagem-responsiva :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
           <!-- <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulo" slot="nao-necessario-informar-name-qdo-tiver-so-um" > -->
+            <meu-botao tipo="button" rotulo="REMOVER" @botaoAtivado="remove($event, foto)"/> 
+            <!-- 
+              - Não está usando o : porque não é propriedade de nenhum componente, é apenas uma string 
+              - O @click.native serve para pedir para efetuar o CLICK nativo do botão do componente
+              - O $event é o parâmetro passado no this.$emit() do botão
+            -->
         </meu-painel>
       </li>
     </ul>
@@ -20,6 +26,7 @@
 <script>
 import Painel from '../shared/painel/Painel.vue';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
+import Botao from '../shared/botao/Botao.vue';
 
 export default {
 
@@ -31,7 +38,8 @@ export default {
   */
   components: {
     'meu-painel': Painel,
-    'imagem-responsiva': ImagemResponsiva
+    'imagem-responsiva': ImagemResponsiva,
+    'meu-botao': Botao
   },
 
   data () {
@@ -63,6 +71,12 @@ export default {
       } else {
         return this.fotos;
       }
+    }
+  },
+
+  methods: {
+    remove($event, foto) {
+      alert(`Removeu ${foto.titulo} ${$event}!`);
     }
   },
 
