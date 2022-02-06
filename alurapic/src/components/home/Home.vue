@@ -9,13 +9,24 @@
     <ul class="lista-fotos">
       <li class="lista-fotos-item" v-for="foto of fotosComFiltro">
         <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
+          <!-- v-meu-transform="{ incremento: 15, animacao: true }"  -->
+          <imagem-responsiva 
+          v-meu-transform.animacao.reverso="15" 
+          :url="foto.url" 
+          :titulo="foto.titulo"></imagem-responsiva>
           <!-- <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulo" slot="nao-necessario-informar-name-qdo-tiver-so-um" > -->
-            <meu-botao tipo="button" rotulo="REMOVER" @botaoAtivado="remove($event, foto)"/> 
+            <meu-botao 
+            tipo="button"
+            rotulo="REMOVER"
+            @botaoAtivado="remove($event, foto)"
+            :confirmacao="true"
+            estilo="perigo"/> 
             <!-- 
               - Não está usando o : porque não é propriedade de nenhum componente, é apenas uma string 
               - O @click.native serve para pedir para efetuar o CLICK nativo do botão do componente
               - O $event é o parâmetro passado no this.$emit() do botão
+              - No caso do "confirmacao" caso não seja adicionado o : antes, será considerado um texto;
+                quando coloca os : é feita uma avaliação do tipo
             -->
         </meu-painel>
       </li>

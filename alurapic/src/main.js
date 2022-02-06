@@ -3,6 +3,7 @@ import App from './App.vue';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import { routes } from './routes'; // É necessário usar as {} porque no routes.js não foi usado export default
+import './directives/Transform'; // É necessário importar as diretivas, mas não informa o nome
 
 Vue.use(VueResource); // Necessário para registrar globalmente e poder ser utilizado em qualquer lugar
 Vue.use(VueRouter); // Necessário para fazer o roteamento das páginas; vai interceptar na URL o que vier depois de /#/ como a rota
